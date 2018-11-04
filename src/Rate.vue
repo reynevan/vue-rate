@@ -10,7 +10,7 @@
     </svg>
     <input type="hidden" :name="name" v-model="rate" :required="required">
     <template v-for="n in length">
-      <button type="button" :key="n" :class="{'Rate__star': true, 'hover': n <= over, 'filled': (n <= rate || isFilled(n))}" @mouseover="onOver(n)" @mouseout="onOut(n)" @click="setRate(n)" @keyup="onOver(n)" @keyup.enter="setRate(n)" :disabled="disabled">
+      <button type="button" :key="n" :class="{'Rate__star': true, 'hover': n <= over, 'filled': (n <= over || isFilled(n))}" @mouseover="onOver(n)" @mouseout="onOut(n)" @click="setRate(n)" @keyup="onOver(n)" @keyup.enter="setRate(n)" :disabled="disabled">
         <svg class="icon">
           <use xlink:href="#icon-star-full"></use>
         </svg>
@@ -116,10 +116,10 @@ export default {
 }
 
 .Rate__star.hover{
-  color: #efc20f;
+  color: #f00;
 }
 .Rate__star.filled{
-  color: #efc20f;
+  color: #f00;
 }
 
 .Rate__star:hover, 
@@ -133,8 +133,8 @@ export default {
 }
 
 .Rate.has-error .Rate__star{color: #f37a77;}
-.Rate.has-error .Rate__star.hover{color: #efc20f;}
-.Rate.has-error .Rate__star.filled{color: #efc20f;}
+.Rate.has-error .Rate__star.hover{color: #f00;}
+.Rate.has-error .Rate__star.filled{color: #f00;}
 
 .Rate__star[disabled]{
   opacity: 0.8;
@@ -142,7 +142,7 @@ export default {
 
 .Rate__star.hover[disabled],
 .Rate__star.filled[disabled]{
-  color: #efc20f;
+  color: #f00;
   opacity: 0.6;
 }
 
